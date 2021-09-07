@@ -6,6 +6,10 @@ export class PointOfSale {
   constructor(private display: IDisplay) {}
 
   public onBarcode(barcode: string): void {
-    this.display.show(barcode);
+    if (barcode == '') {
+      this.display.show('Invalid Barcode');
+    } else {
+      this.display.show(barcode);
+    }
   }
 }
