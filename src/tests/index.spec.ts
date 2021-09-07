@@ -1,17 +1,22 @@
 import { Display } from '../display';
 import { PointOfSale } from '../PointOfSale';
+import { inMemoryPriceDatabase } from '../PriceDataBase';
 test('POS can receive a barcode', () => {
-  const display = new Display();
-  const pointOfSale = new PointOfSale(display);
-
-  pointOfSale.onBarcode('063491028120');
-  expect(display.getDisplayText()).toBe('063491028120');
+  checkForDisplayValue('063491028120', '063491028120');
 });
 
 test('Barcode shows error for invalid barcode', () => {
-  const display = new Display();
-  const pointOfSale = new PointOfSale(display);
-
-  pointOfSale.onBarcode('');
-  expect(display.getDisplayText()).toBe('Invalid Barcode');
+  checkForDisplayValue('', 'Invalid Barcode');
 });
+
+test('Barcode can be found in the price database, show price in display', () => {
+  checkForDisplayValue('12345', '666,00€');
+});
+function checkForDisplayValue(barcode: string, displayText: string) {
+  const display = new Display();
+  const priceDataBase = new inMemoryPriceDatabase();
+  const pointOfSale = new PointOfSale(display, priceDataBase);
+
+  pointOfSale.onBarcode(barcode);
+  expect(display.getDisplayText()).toBe(displayText);
+}
