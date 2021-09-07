@@ -1,3 +1,7 @@
-test('dummy', () => {
-  expect(10).toBe(10);
+import { PointOfSale } from '../PointOfSale';
+test('POS can receive a barcode', () => {
+  const pointOfSale = new PointOfSale();
+
+  pointOfSale.onBarcode('12345');
+  expect(pointOfSale.barcode).toBe('12345');
 });
