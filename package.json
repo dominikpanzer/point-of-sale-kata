@@ -1,7 +1,7 @@
 {
-  "name": "neigeknoert",
+  "name": "point_of_sale_kata",
   "version": "1.0.0",
-  "description": "Neigeknört App",
+  "description": "Point of Sale Kata",
   "main": "index.js",
   "scripts": {
     "test:dev": "jest --watchAll",
