@@ -6,11 +6,10 @@
     ],
     "extends": [
       "eslint:recommended",
-      "plugin:@typescript-eslint/eslint-recommended",
       "plugin:@typescript-eslint/recommended"
     ],
     "rules": { 
-        "no-console": 2, // Remember, this means error!  
-        "no-unused-vars": 2
+        "no-console": 2,
+        "@typescript-eslint/no-unused-vars": ["error"]
     }
   }

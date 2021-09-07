@@ -1,7 +1,9 @@
+import { Display } from '../display';
 import { PointOfSale } from '../PointOfSale';
 test('POS can receive a barcode', () => {
-  const pointOfSale = new PointOfSale();
+  const display = new Display();
+  const pointOfSale = new PointOfSale(display);
 
   pointOfSale.onBarcode('12345');
-  expect(pointOfSale.barcode).toBe('12345');
+  expect(display.getDisplayText()).toBe('12345');
 });
