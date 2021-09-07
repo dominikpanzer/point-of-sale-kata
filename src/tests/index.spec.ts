@@ -12,6 +12,11 @@ test('Barcode shows error for invalid barcode', () => {
 test('Barcode can be found in the price database, show price in display', () => {
   checkForDisplayValue('12345', '666,00€');
 });
+
+test('Barcode can not be found in the price database, show error in display', () => {
+  checkForDisplayValue('5353563', 'Item not found');
+});
+
 function checkForDisplayValue(barcode: string, displayText: string) {
   const display = new Display();
   const priceDataBase = new inMemoryPriceDatabase();
