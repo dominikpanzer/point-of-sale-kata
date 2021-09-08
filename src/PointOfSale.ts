@@ -1,20 +1,23 @@
-import { IDisplay } from './display';
+import { Barcode } from './Barcode';
+import { IDisplay } from './Display';
 import { IPriceDatabase } from './PriceDataBase';
 
 export class PointOfSale {
-  public barcode!: string;
-
   constructor(
     private display: IDisplay,
     private priceDataBase: IPriceDatabase
   ) {}
 
-  public onBarcode(barcode: string): void {
+  public onBarcode(barcodeString: string): void {
     let price = '';
-    if (barcode == '') {
+    let barcode: Barcode;
+    try {
+      barcode = Barcode.fromBarcode(barcodeString);
+    } catch (Error) {
       this.display.show('Invalid Barcode');
       return;
     }
+
     try {
       price = this.priceDataBase.getPriceForProductByBarcode(barcode);
     } catch (Error) {
