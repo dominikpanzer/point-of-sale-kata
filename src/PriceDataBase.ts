@@ -1,5 +1,5 @@
 export interface IPriceDatabase {
-  getPriceForProductbyBarcode(barcode: string): string | undefined;
+  getPriceForProductByBarcode(barcode: string): string;
 }
 
 export class inMemoryPriceDatabase implements IPriceDatabase {
@@ -8,9 +8,13 @@ export class inMemoryPriceDatabase implements IPriceDatabase {
     ['063491028120', '063491028120']
   ]);
 
-  getPriceForProductbyBarcode(barcode: string): string | undefined {
-    if (this.priceCatalog.has(barcode)) {
-      return this.priceCatalog.get(barcode);
+  getPriceForProductByBarcode(barcode: string): string {
+    const price = this.priceCatalog.get(barcode);
+
+    if (price) {
+      return price;
+    } else {
+      throw new Error('Product not found');
     }
   }
 }

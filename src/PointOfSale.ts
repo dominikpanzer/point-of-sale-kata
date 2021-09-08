@@ -10,12 +10,17 @@ export class PointOfSale {
   ) {}
 
   public onBarcode(barcode: string): void {
+    let price = '';
     if (barcode == '') {
       this.display.show('Invalid Barcode');
-    } else {
-      let price = this.priceDataBase.getPriceForProductbyBarcode(barcode);
-      if (price == undefined) price = 'Item not found';
-      this.display.show(price);
+      return;
     }
+    try {
+      price = this.priceDataBase.getPriceForProductByBarcode(barcode);
+    } catch (Error) {
+      this.display.show('Item not found');
+      return;
+    }
+    this.display.show(price);
   }
 }
