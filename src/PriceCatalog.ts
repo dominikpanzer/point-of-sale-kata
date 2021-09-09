@@ -1,10 +1,10 @@
 import { Barcode } from './Barcode';
 
-export interface IPriceDatabase {
+export interface IPriceCatalog {
   getPriceForProductByBarcode(barcode: Barcode): string;
 }
 
-export class inMemoryPriceDatabase implements IPriceDatabase {
+export class inMemoryPriceCatalog implements IPriceCatalog {
   private priceCatalog = new Map([
     [Barcode.fromBarcode('12345'), '666,00€'],
     [Barcode.fromBarcode('063491028120'), '063491028120']

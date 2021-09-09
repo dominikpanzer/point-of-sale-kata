@@ -1,6 +1,6 @@
 import { Display } from '../display';
 import { PointOfSale } from '../PointOfSale';
-import { inMemoryPriceDatabase } from '../PriceDataBase';
+import { inMemoryPriceCatalog } from '../PriceCatalog';
 test('POS can receive a barcode', () => {
   checkForDisplayValue('063491028120', '063491028120');
 });
@@ -19,8 +19,8 @@ test('Barcode can not be found in the price database, show error in display', ()
 
 function checkForDisplayValue(barcode: string, displayText: string) {
   const display = new Display();
-  const priceDataBase = new inMemoryPriceDatabase();
-  const pointOfSale = new PointOfSale(display, priceDataBase);
+  const priceCatalog = new inMemoryPriceCatalog();
+  const pointOfSale = new PointOfSale(display, priceCatalog);
 
   pointOfSale.onBarcode(barcode);
   expect(display.getDisplayText()).toBe(displayText);
