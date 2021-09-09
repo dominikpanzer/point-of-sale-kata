@@ -1,4 +1,5 @@
 import { Barcode } from './Barcode';
+import { PosError } from './PosError';
 import { IDisplay } from './Display';
 import { IPriceCatalog } from './PriceCatalog';
 
@@ -6,20 +7,12 @@ export class PointOfSale {
   constructor(private display: IDisplay, private priceCatalog: IPriceCatalog) {}
 
   public onBarcode(barcodeString: string): void {
-    let price = '';
-    let barcode: Barcode;
     try {
-      barcode = Barcode.fromBarcode(barcodeString);
-    } catch (Error) {
-      this.display.show('Invalid Barcode');
-      return;
+      const barcode = Barcode.fromBarcode(barcodeString);
+      const price = this.priceCatalog.getPriceForProductByBarcode(barcode);
+      this.display.show(price);
+    } catch (error) {
+      if (error instanceof PosError) this.display.show(error.message);
     }
-    try {
-      price = this.priceCatalog.getPriceForProductByBarcode(barcode);
-    } catch (Error) {
-      this.display.show('Item not found');
-      return;
-    }
-    this.display.show(price);
   }
 }

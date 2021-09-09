@@ -1,11 +1,12 @@
 import { Barcode } from './Barcode';
+import { PosError } from './PosError';
 
 export interface IPriceCatalog {
   getPriceForProductByBarcode(barcode: Barcode): string;
 }
 
 export class inMemoryPriceCatalog implements IPriceCatalog {
-  private priceCatalog = new Map([
+  private priceCatalog = new Map<Barcode, string>([
     [Barcode.fromBarcode('12345'), '666,00€'],
     [Barcode.fromBarcode('063491028120'), '063491028120']
   ]);
@@ -19,10 +20,10 @@ export class inMemoryPriceCatalog implements IPriceCatalog {
       }
     );
 
-    if (price != '') {
+    if (price) {
       return price;
     } else {
-      throw new Error('Product not found');
+      throw new PosError('Item not found');
     }
   }
 }
