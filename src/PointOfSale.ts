@@ -1,12 +1,9 @@
 import { Barcode } from './Barcode';
 import { IDisplay } from './Display';
-import { IPriceDatabase } from './PriceDataBase';
+import { IPriceCatalog } from './PriceCatalog';
 
 export class PointOfSale {
-  constructor(
-    private display: IDisplay,
-    private priceDataBase: IPriceDatabase
-  ) {}
+  constructor(private display: IDisplay, private priceCatalog: IPriceCatalog) {}
 
   public onBarcode(barcodeString: string): void {
     let price = '';
@@ -17,9 +14,8 @@ export class PointOfSale {
       this.display.show('Invalid Barcode');
       return;
     }
-
     try {
-      price = this.priceDataBase.getPriceForProductByBarcode(barcode);
+      price = this.priceCatalog.getPriceForProductByBarcode(barcode);
     } catch (Error) {
       this.display.show('Item not found');
       return;
