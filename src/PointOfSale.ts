@@ -10,9 +10,10 @@ export class PointOfSale {
     try {
       const barcode = Barcode.fromBarcode(barcodeString);
       const price = this.priceCatalog.getPriceForProductByBarcode(barcode);
-      this.display.show(price);
+      this.display.show(price.toString());
     } catch (error) {
       if (error instanceof PosError) this.display.show(error.message);
+      else this.display.show("Undefined Error")
     }
   }
 }

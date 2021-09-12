@@ -2,7 +2,7 @@ import { Display } from '../display';
 import { PointOfSale } from '../PointOfSale';
 import { inMemoryPriceCatalog } from '../PriceCatalog';
 test('POS can receive a barcode', () => {
-  checkForDisplayValue('063491028120', '063491028120');
+  checkForDisplayValue('063491028120', '555.00€');
 });
 
 test('Barcode shows error for invalid barcode', () => {
@@ -10,7 +10,7 @@ test('Barcode shows error for invalid barcode', () => {
 });
 
 test('Barcode can be found in the price database, show price in display', () => {
-  checkForDisplayValue('12345', '666,00€');
+  checkForDisplayValue('12345', '666.00€');
 });
 
 test('Barcode can not be found in the price database, show error in display', () => {

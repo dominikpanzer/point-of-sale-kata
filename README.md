@@ -22,3 +22,4 @@ Questions:
 8. PriceDataBase now throws an exception if nothing can be found.
 9. Changed nested IF to guardclause in PointofSale
 10. After watching the Videos on how JB solved the problem, I think I took some steps too fast. they were no baby steps. Maybe because I already had a solution on my mind. 11. I actually don't see the Display as a classic View in a MVC-"architecture". I interpreted the display as a predefined unchangeable API to an external device, which only exposes two methods. So I chose to give PointOfSale the task to define the textfragments to be displayed. I might got that wrong.
+11. Added two new value objects "price" and "currency" to get rid of primitive obsession without adding further tests. Is this "ok" from a TDD perspective or should I have created tests for new classes first?
