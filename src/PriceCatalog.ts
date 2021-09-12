@@ -10,11 +10,11 @@ export interface IPriceCatalog {
 export class inMemoryPriceCatalog implements IPriceCatalog {
   private priceCatalog = new Map<Barcode, Price>([
     [Barcode.fromBarcode('12345'), new Price(66600, new Currency('EUR'))],
-    [Barcode.fromBarcode('063491028120'), new Price(55500, new Currency('EUR'))],
+    [Barcode.fromBarcode('063491028120'), new Price(55500, new Currency('EUR'))]
   ]);
 
   getPriceForProductByBarcode(barcode: Barcode): Price {
-    let price: Price | undefined = undefined
+    let price: Price | undefined = undefined;
     this.priceCatalog.forEach(
       (priceOfBarcode: Price, barcodeFromCatalog: Barcode) => {
         if (barcodeFromCatalog.barcode == barcode.barcode)

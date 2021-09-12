@@ -13,7 +13,7 @@ export class PointOfSale {
       this.display.show(price.toString());
     } catch (error) {
       if (error instanceof PosError) this.display.show(error.message);
-      else this.display.show("Undefined Error")
+      else this.display.show('Undefined Error');
     }
   }
 }
