@@ -1,22 +1,22 @@
 import { Barcode } from './Barcode';
 import { Currency } from './Currency';
 import { PosError } from './PosError';
-import { Price } from './Price';
+import { Money } from './Money';
 
 export interface IPriceCatalog {
-  getPriceForProductByBarcode(barcode: Barcode): Price;
+  getPriceForProductByBarcode(barcode: Barcode): Money;
 }
 
 export class inMemoryPriceCatalog implements IPriceCatalog {
-  private priceCatalog = new Map<Barcode, Price>([
-    [Barcode.fromBarcode('12345'), new Price(66600, new Currency('EUR'))],
-    [Barcode.fromBarcode('063491028120'), new Price(55500, new Currency('EUR'))]
+  private priceCatalog = new Map<Barcode, Money>([
+    [Barcode.fromBarcode('12345'), new Money(66600, new Currency('EUR'))],
+    [Barcode.fromBarcode('063491028120'), new Money(55500, new Currency('EUR'))]
   ]);
 
-  getPriceForProductByBarcode(barcode: Barcode): Price {
-    let price: Price | undefined = undefined;
+  getPriceForProductByBarcode(barcode: Barcode): Money {
+    let price: Money | undefined = undefined;
     this.priceCatalog.forEach(
-      (priceOfBarcode: Price, barcodeFromCatalog: Barcode) => {
+      (priceOfBarcode: Money, barcodeFromCatalog: Barcode) => {
         if (barcodeFromCatalog.barcode == barcode.barcode)
           price = priceOfBarcode;
       }
