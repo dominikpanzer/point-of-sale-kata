@@ -9,8 +9,8 @@ export interface IPriceCatalog {
 
 export class inMemoryPriceCatalog implements IPriceCatalog {
   private priceCatalog = new Map<Barcode, Money>([
-    [Barcode.fromBarcode('12345'), new Money(66600, new Currency('EUR'))],
-    [Barcode.fromBarcode('063491028120'), new Money(55500, new Currency('EUR'))]
+    [Barcode.fromBarcode('12345'), Money.fromAmountAndCurrency(66600, new Currency('EUR'))],
+    [Barcode.fromBarcode('063491028120'), Money.fromAmountAndCurrency(55500, new Currency('EUR'))]
   ]);
 
   getPriceForProductByBarcode(barcode: Barcode): Money {
