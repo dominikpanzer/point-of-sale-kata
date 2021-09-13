@@ -63,5 +63,4 @@ test('manually add an item', () => {
   pointOfSale.onBarcode('12345');
   pointOfSale.checkout();
   expect(display.getDisplayText()).toBe('Totals: 1432.00€');
-
-})
+});
