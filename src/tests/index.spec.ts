@@ -34,3 +34,9 @@ test('Barcode can be found in the price database, show price in display', () => 
 test('Barcode can not be found in the price database, show error in display', () => {
   scanSingleCodeAndCheckForDisplayText('5353563', 'Item not found');
 });
+
+test('Show totals after checkout', () => {
+  pointOfSale.onBarcode('12345');
+  pointOfSale.checkout();
+  expect(display.getDisplayText()).toBe('Totals: 666.00€');
+});
