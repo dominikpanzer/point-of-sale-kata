@@ -2,6 +2,7 @@
 
 This is an example solution in TypeScript for J.B. Rainsbergers Kata "Point of Sale" from the course "The World's Best Intro to TDD, Level 1: TDD done right".
 
+## Iteration 1 - Show Price On Display
 Test list:
 
 1. Barcode shows error for invalid barcode
@@ -23,3 +24,14 @@ Questions:
 9. Changed nested IF to guardclause in PointofSale
 10. After watching the Videos on how JB solved the problem, I think I took some steps too fast. they were no baby steps. Maybe because I already had a solution on my mind. 11. I actually don't see the Display as a classic View in a MVC-"architecture". I interpreted the display as a predefined unchangeable API to an external device, which only exposes two methods. So I chose to give PointOfSale the task to define the textfragments to be displayed. I might got that wrong.
 11. Added two new value objects "price" and "currency" to get rid of primitive obsession without adding further tests. Is this "ok" from a TDD perspective or should I have created tests for new classes first?
+
+
+##  Iteration 2 - Buy multiple items & more
+
+Test list:
+1. Show totals on display when all items are scanned ("checkout")
+2. Buy 3 existing item and show totals
+3. bug 3 existing and 1 non existing items and show totals
+4. buy 3 non existing items and show totals
+5. manually add a non existing item
+6. notify manager that non existing item has been scanned
