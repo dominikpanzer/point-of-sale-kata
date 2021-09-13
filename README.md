@@ -35,3 +35,6 @@ Test list:
 4. buy 3 non existing items and show totals
 5. manually add a non existing item
 6. notify manager that non existing item has been scanned
+
+Questions:
+1. I wrote specific unit tests for my Money-class. is this okay or should I just have used the acceptance test? I like the faster feedback of a specific unit test

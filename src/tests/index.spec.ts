@@ -40,3 +40,11 @@ test('Show totals after checkout', () => {
   pointOfSale.checkout();
   expect(display.getDisplayText()).toBe('Totals: 666.00€');
 });
+
+test('Show totals for three existing products after checkout', () => {
+  pointOfSale.onBarcode('12345');
+  pointOfSale.onBarcode('12345');
+  pointOfSale.onBarcode('12345');
+  pointOfSale.checkout();
+  expect(display.getDisplayText()).toBe('Totals: 1998.00€');
+});
