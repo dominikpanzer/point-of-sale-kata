@@ -12,6 +12,17 @@ export class PointOfSale {
     this.display.show('Totals: ' + this.totals.toString());
   }
 
+  addItemWorth(amount: number, currency: string) :void{
+    try {    
+    const additionalItem = Money.fromAmountAndCurrency(amount, new Currency(currency))
+    this.display.show(additionalItem.toString());
+    this.totals = this.totals.add(additionalItem)
+  } catch (error) {
+    if (error instanceof PosError) this.display.show(error.message);
+    else this.display.show('Undefined Error');
+  }    
+  }
+
   constructor(private display: IDisplay, private priceCatalog: IPriceCatalog) {
     this.totals = Money.fromAmountAndCurrency(0, new Currency('EUR'));
   }
