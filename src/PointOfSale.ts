@@ -33,7 +33,7 @@ export class PointOfSale {
   public onBarcode(barcodeString: string): void {
     try {
       const barcode = Barcode.fromBarcode(barcodeString);
-      const price = this.priceCatalog.getPriceForProductByBarcode(barcode);
+      const price = this.priceCatalog.lookupPriceBy(barcode);
       this.totals = this.totals.add(price);
       this.display.show(price.toString());
     } catch (error) {
